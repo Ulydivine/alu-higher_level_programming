@@ -1,2 +1,2 @@
--- show all rows in the database 
-SELECT * FROM first_table;
+-- nserts a new row in the table first_table
+INSERT INTO first_table(id,name) VALUES(89, "Holberton School");
