@@ -1,18 +1,15 @@
 #!/usr/bin/python3
-'''use github api to know me'''
+"""
+Module 10-my_github.py
+"""
+
 
 import requests
-import sys
-import requests.auth
+from sys import argv
+from requests.auth import HTTPBasicAuth
+
 
 if __name__ == "__main__":
-    username = sys.argv[1]
-    password = sys.argv[2]
-    basic = requests.auth.HTTPBasicAuth(username, password)
-    response = requests.get(
-        'https://api.github.com/user', auth=basic)
-    try:
-        json_response = response.json()
-        print("{}".format(json_response["id"]))
-    except:
-        print(None)
+    url = 'https://api.github.com/user'
+    resp = requests.get(url, auth=HTTPBasicAuth(argv[1], argv[2]))
+    print(resp.json().get('id'))

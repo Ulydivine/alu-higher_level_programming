@@ -1,18 +1,17 @@
 #!/usr/bin/python3
-'''use github api to know me'''
+"""I documented you"""
 
-import requests
+import urllib.request
+import urllib.parse
 import sys
-import requests.auth
 
-if __name__ == "__main__":
-    username = sys.argv[1]
-    password = sys.argv[2]
-    basic = requests.auth.HTTPBasicAuth(username, password)
-    response = requests.get(
-        'https://api.github.com/user', auth=basic)
-    try:
-        json_response = response.json()
-        print("{}".format(json_response["id"]))
-    except:
-        print(None)
+if __name__ == '__main__':
+    """"Documented"""
+    url = sys.argv[1]
+    message = {"email": sys.argv[2]}
+    data = urllib.parse.urlencode(message)
+    data = data.encode('ascii')
+    req = urllib.request.Request(url, data)
+    with urllib.request.urlopen(req) as response:
+        content = response.read()
+        print("{}".format(content.decode("utf-8")))
